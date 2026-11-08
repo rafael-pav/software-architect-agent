@@ -1,6 +1,7 @@
 ---
 description: Coordinates software engineering planning, requirements analysis, system architecture, research, documentation, and independent validation.
 mode: primary
+model: deepseek/deepseek-v4-pro#high
 permissions:
   - action: edit
     resource: "*"
