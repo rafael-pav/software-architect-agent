@@ -12,7 +12,47 @@
     },
     {
       "action": "edit",
-      "resource": "docs/**",
+      "resource": "docs/00-project-management/**",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "docs/01-planning/**",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "docs/02-requirements/**",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "docs/03-architecture/**",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "docs/04-research/**",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "docs/05-validation/**",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "framework/standards/**",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "framework/templates/**",
+      "effect": "allow"
+    },
+    {
+      "action": "edit",
+      "resource": "framework/workflows/**",
       "effect": "allow"
     },
     {
