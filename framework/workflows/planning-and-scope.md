@@ -6,27 +6,27 @@
 | --- | --- |
 | Workflow ID | `WF-002` |
 | Workflow name | Planning and Scope |
-| Version | `0.1.2` |
+| Version | `0.2.0` |
 | Status | `Approved` |
 
 | Field | Value |
 | --- | --- |
 | Asset type | Reusable framework workflow. Procedural description for agents; not a script, not executable automation, and not a project document. |
 | Workflow ID | `WF-002` |
-| Purpose | Define how Phase 1 (Planning and Scope) deliverables are produced, reviewed, and presented so that scope, budget, priorities, and schedule assumptions are established with classified evidence and explicit human approval rather than agent assumption. |
+| Purpose | Define how Phase 1 (Planning and Scope) deliverables are produced, reviewed, and presented so that scope, budget, priorities, and schedule assumptions are established with classified evidence and explicit human approval rather than agent assumption, beginning from an approved Project Brief. |
 | Status | `Approved` |
-| Version | `0.1.2` |
+| Version | `0.2.0` |
 | Last updated | `2026-11-10` |
 | Owner role | Documentation Agent (sole authorized writer of framework assets), under Software Architect coordination. |
 | Authority / approval | Approved by Human user on 2026-11-10. |
-| Validation | PASS — independent validation completed; findings MEDIUM, LOW, and INFORMATIONAL resolved. |
+| Validation | v0.1.2: independent validation PASS. v0.2.0: independent validation PASS (findings MEDIUM, LOW, and INFORMATIONAL resolved). |
 | Applies to | Phase 1 work on any project, whether or not Phase 1 was preceded by `WF-001`. |
-| Related workflows | `WF-001` (initiation), `WF-003` (successor phase), `WF-005` (research), `WF-006` (documentation production), `WF-007` (independent validation), `WF-008` (approval and phase gate), `WF-009` (change control). |
-| Related documents | [`AGENTS.md`](../../AGENTS.md) §§5–7, 10; [`framework/standards/documentation-standards.md`](../standards/documentation-standards.md) §§4, 7, 8, 9; [`.opencode/agents/software-architect.md`](../../.opencode/agents/software-architect.md) §§5–6, 9; [`.opencode/agents/documentation-agent.md`](../../.opencode/agents/documentation-agent.md) §7. |
+| Related workflows | `WF-001` (initiation), `WF-003` (successor phase), `WF-005` (research), `WF-006` (documentation production), `WF-007` (independent validation), `WF-008` (approval and phase gate), `WF-009` (change control), `WF-010` (technology capability assessment). |
+| Related documents | [`AGENTS.md`](../../AGENTS.md) §§5–7, 10; [`framework/standards/documentation-standards.md`](../standards/documentation-standards.md) §§4, 7, 8, 9; [`project-brief.md`](../templates/project-brief.md); [`.opencode/agents/software-architect.md`](../../.opencode/agents/software-architect.md) §§5–6, 9; [`.opencode/agents/documentation-agent.md`](../../.opencode/agents/documentation-agent.md) §7. |
 
 **Identifier scheme.** Workflow identifiers in this asset class use the pattern `WF-NNN`, assigned sequentially and never reused. The scheme is outside the six requirement prefixes of `documentation-standards.md` §5.1, is documented here for the asset class as required by §5.5, and does not conflict with them. Other identifiers cited in this workflow (`BR`, `FR`, `NFR`, `UC`, `INT`, `SEC`, `AC`, `TST`, `ASM`, `OQ`, `RISK`, `DEC`, `ADR`, `VAL`, `OBJ`, `SC`, `MS`, `DLV`, `CON`, `DEP`, `CRIT`, `OPT`) keep the meanings given by the standard, template, or agent definition that establishes them; this workflow does not redefine them.
 
-**Normative basis.** This workflow introduces no documentation rule of its own. Where it states a rule, the rule derives from `AGENTS.md`, the agent definitions, or `documentation-standards.md`, and those sources prevail if this file conflicts with them. Procedural conventions introduced by this workflow and not fixed by those sources are in effect as part of an approved workflow: this workflow was approved by the Human user on 2026-11-10 and independently validated (PASS), so those conventions are no longer pending `RECOMMENDATION` items. Approval does not change their normative rank — those sources prevail if this file conflicts with them.
+**Normative basis.** This workflow introduces no documentation rule of its own. Where it states a rule, the rule derives from `AGENTS.md`, the agent definitions, or `documentation-standards.md`, and those sources prevail if this file conflicts with them. The conventions introduced in v0.1.2 are in effect as part of an approved workflow: v0.1.2 was approved by the Human user on 2026-11-10 and independently validated (PASS). The Project Brief precondition and the mandatory persistence requirements introduced in v0.2.0 are in effect as part of the approved workflow: v0.2.0 was approved by the Human user on 2026-11-10 and independently validated (PASS). Approval does not change their normative rank — `AGENTS.md`, the agent definitions, and `documentation-standards.md` prevail if this file conflicts with them.
 
 **Section structure.** The sixteen sections of this workflow are a **proposed convention for this asset class** — a `RECOMMENDATION` until a durable workflow-governance document is established. The order deviates from the section order recommended in `documentation-standards.md` §3.3, which is a SHOULD-level recommendation and not a mandatory rule. The deviation is recorded here and justified: a workflow is read as a procedure, so its order follows the execution sequence — identification, inputs, steps, outputs, controls, approval points, completion criteria — rather than a document's reading order. The standard's content requirements are still met in section 10 (references), section 12 (decisions and approval status), section 14 (assumptions, open questions, and risks), and section 16 (change history).
 
@@ -59,6 +59,7 @@ Do not use this workflow to draft requirements or architecture. Those belong to 
 - Project Charter, Scope Statement, Stakeholder Analysis, Feasibility Study, Budget Estimate, Project Roadmap, Risk Register, and Assumptions Register, to the extent they apply to the project.
 - Determining deliverable applicability and recording the reason for each exclusion.
 - Commissioning research needed for feasibility, cost, licensing, or technical viability.
+- Assessing, under `WF-010`, any planning-time need that may require an OpenCode mechanism — a Skill, Command, agent, MCP server, or Plugin. A resulting recommendation is an input to a planning decision, never an installation.
 - Internal consistency review across Phase 1 deliverables.
 - Preparation of the decisions that require human approval.
 
@@ -68,6 +69,7 @@ Do not use this workflow to draft requirements or architecture. Those belong to 
 - Functional and non-functional requirements (`WF-003`), even where a charter references them.
 - Architecture, technology selection, and integration design (`WF-004`). Feasibility may compare technology options, but selecting one is a decision and an architecture input.
 - Application implementation, cost quotations presented as commitments, or schedule commitments made by an agent.
+- Installing, enabling, or configuring any OpenCode mechanism, even where `WF-010` recommends one.
 - Declaring Phase 1 complete (`WF-008`).
 
 ---
@@ -89,7 +91,8 @@ Do not use this workflow to draft requirements or architecture. Those belong to 
 ### 6.1 Preconditions
 
 - Explicit human authorization to begin Phase 1, recorded with its scope.
-- The initiation audit from `WF-001`, or an equivalent documented statement of available material, gaps, and contradictions.
+- An approved Project Brief is a **MUST** precondition for Phase 1. It is produced through [`project-brief.md`](../templates/project-brief.md) and carries the approver and the approval date. Without an approved brief, Phase 1 drafting **MUST NOT** begin, and this workflow provides no exception: the precondition is unconditional. Where `WF-001` was not run — for example on a resumed, re-baselined, or separately authorized engagement — an equivalent brief approved by the human user is still required before Phase 1 drafting begins, produced through the same template with its approver and date recorded. A missing brief is a blocker (§14.5) presented to the human user, not an `OPEN QUESTION` that permits drafting to proceed.
+- The initiation audit and work plan are available as persisted records under `docs/00-project-management/` — produced by `WF-001`, or an equivalent documented statement of available material, gaps, and contradictions where `WF-001` was not run. The Phase 1 authorization record from `WF-001` is required where it exists.
 - Agreement on which original material is authoritative where sources conflict.
 - The Documentation Agent has read `documentation-standards.md` and the relevant templates before drafting.
 
@@ -97,11 +100,13 @@ Do not use this workflow to draft requirements or architecture. Those belong to 
 
 | Input | Source | Requirement | Notes |
 | --- | --- | --- | --- |
-| Phase 1 authorization | Human user, recorded by the Software Architect | **MUST** | Identifies deliverable scope and any exclusions. |
-| Initiation audit and work plan | `WF-001` outputs | **SHOULD** | Required in substance even if not persisted as a file. |
+| Phase 1 authorization | Human user, recorded by the Software Architect | **MUST** | Identifies deliverable scope and any exclusions. Persisted under `docs/00-project-management/`; a verbal authorization that was never recorded is not a sufficient input. |
+| Approved Project Brief | `WF-001` output, or an equivalent approved brief where `WF-001` was not run; persisted under `docs/00-project-management/` | **MUST** | Unconditional: no Phase 1 drafting begins without it (§6.1). Approval recorded with approver and date. It establishes the problem, objectives, preliminary scope, constraints, and integrations that Phase 1 elaborates. |
+| Initiation audit and work plan | `WF-001` outputs, or an equivalent documented statement of available material, gaps, and contradictions where `WF-001` was not run; persisted under `docs/00-project-management/` | **MUST** | Required as persisted records. Persistence is not optional, and an absent record is a defect to be reported, not a condition to be assumed away. The equivalent path relaxes neither persistence nor the duty to state gaps and contradictions. |
 | Original project material | `input/existing-documentation/` | **SHOULD** | Read-only; referenced rather than restated. |
-| Business objectives and constraints | Human user via the Software Architect | **MUST** | Must be attributable, not inferred. |
+| Business objectives and constraints | Project Brief, and the human user via the Software Architect | **MUST** | Must be attributable, not inferred. |
 | Research findings | Research Agent, via `WF-005` | **SHOULD** | Required for feasibility, cost, and technology claims. |
+| Capability assessment | Software Architect, under `WF-010` | **MAY** | Required where a planning decision depends on which OpenCode mechanism is appropriate; it informs a decision and installs nothing. |
 | Templates | `framework/templates/` | **MUST** where a template exists | Deviation is recorded with its reason. |
 | Prior approved decisions | Any `DEC-NNN` register entries | **MUST** be respected | A conflict is escalated, not overwritten. |
 
@@ -109,10 +114,10 @@ Do not use this workflow to draft requirements or architecture. Those belong to 
 
 ## 7. Workflow Steps
 
-1. **Confirm the authorization.** The Software Architect restates which Phase 1 deliverables are authorized, in which order, and with what constraints. If no explicit authorization exists, stop and obtain it (`WF-008`).
+1. **Confirm the authorization and the Project Brief.** The Software Architect restates which Phase 1 deliverables are authorized, in which order, and with what constraints, and confirms that an approved Project Brief exists, naming its version and approval date. If no explicit Phase 1 authorization exists, stop and obtain it (`WF-008`). If no approved brief exists, stop: return to `WF-001`, or obtain an equivalent approved brief through the same template where `WF-001` was not run. The gate is unconditional — a missing brief blocks Phase 1 drafting and is reported to the human user, not recorded as an open question that drafting proceeds around.
 2. **Decide deliverable applicability.** For each of the eight Phase 1 deliverables, record `Applicable`, `Applicable in reduced form`, or `Not applicable — reason`. Applicability is the Software Architect's proposal to the human user, not an agent's unilateral narrowing of scope.
 3. **Identify the decision points.** List the decisions this phase must present for approval: project go-ahead, scope boundaries, budget, priorities, schedule commitments, acceptance of material assumptions, and stakeholder authority. Each decision names its approver.
-4. **Commission research.** Where feasibility, cost, licensing, or technical viability claims are needed, the Software Architect defines the research question, scope, and evidence threshold, and assigns it to the Research Agent under `WF-005`. Research is not commissioned to confirm a preferred answer.
+4. **Commission research.** Where feasibility, cost, licensing, or technical viability claims are needed, the Software Architect defines the research question, scope, and evidence threshold, and assigns it to the Research Agent under `WF-005`. Research is not commissioned to confirm a preferred answer. Where the question concerns which OpenCode mechanism is appropriate — a Skill, Command, agent, MCP server, or Plugin — `WF-010` governs the decision framework, the comparison criteria, and the version stamp for every capability claim. This workflow records the resulting recommendation as an input to a planning decision; it neither installs nor configures anything.
 5. **Evaluate research findings.** The Software Architect assesses evidence quality and limitations, separates documented capability from vendor claim and inference, and identifies what remains unverified. Findings that are insufficient are returned as new questions, not accepted as conclusions.
 6. **Form recommendations.** For each decision point, the Software Architect defines viable alternatives, compares advantages and disadvantages, identifies costs, risks, and dependencies, recommends an option, and records the reasoning. Recommendations remain `RECOMMENDATION` until approved.
 7. **Issue the drafting assignment.** The Software Architect authorizes the Documentation Agent under `WF-006` with an explicit list of files under `docs/01-planning/`, the deliverable for each file, the inputs to use, and any constraints. A general instruction to "write the planning documents" is not a sufficient authorization.
@@ -142,6 +147,8 @@ Do not use this workflow to draft requirements or architecture. Those belong to 
 
 The Documentation Agent does not delegate work, does not request research directly, and does not decide scope. The Research Agent does not edit deliverables. The Validation Agent does not correct its own findings.
 
+Where a feasibility or technology question is in substance a question about which OpenCode mechanism to use, the Software Architect handles it under `WF-010` rather than resolving it inside this workflow. The outcome is a recommendation presented to the human user; any installation or configuration is separate, requires explicit human authorization, and is outside both workflows.
+
 ---
 
 ## 9. Expected Outputs
@@ -168,6 +175,7 @@ File names are indicative: the authorization names the actual paths, and the pro
 
 | Asset | Path | Use in this workflow |
 | --- | --- | --- |
+| Project Brief template | [`framework/templates/project-brief.md`](../templates/project-brief.md) | Precondition input: the approved intake record that supplies the problem, objectives, preliminary scope, constraints, and integrations Phase 1 elaborates. |
 | Project Charter template | [`framework/templates/project-charter.md`](../templates/project-charter.md) | Primary structure for objectives, stakeholders, success criteria, budget, milestones, assumptions, risks, and approval status. |
 | Scope Statement template | [`framework/templates/scope-statement.md`](../templates/scope-statement.md) | Boundaries, deliverables, constraints, dependencies, and scope-level acceptance criteria. |
 | Feasibility Study template | [`framework/templates/feasibility-study.md`](../templates/feasibility-study.md) | Criteria-first comparison of alternatives across technical, economic, operational, and schedule dimensions. |
@@ -176,7 +184,7 @@ File names are indicative: the authorization names the actual paths, and the pro
 | Documentation Standards | [`framework/standards/documentation-standards.md`](../standards/documentation-standards.md) | Classification, identifiers, evidence, metadata, versioning, and completion criteria. |
 | Scope Statement §2.3 | `docs/01-planning/scope-statement.md` §2.3 | Records how scope changes are requested and approved. This workflow requires that the recorded process follow `WF-009`; it does not replace the project's own record of who evaluates and who approves a scope change. |
 
-**Template availability (observed 2026-11-10).** Templates exist for the Project Charter, Scope Statement, and Feasibility Study. No template exists for a Stakeholder Analysis, a standalone Budget Estimate, a Project Roadmap, a Risk Register, or an Assumptions Register; the charter and scope templates carry partial sections for budget, milestones, risks, and assumptions. The Documentation Agent **MUST** apply `documentation-standards.md` §3 to those artifacts and **MUST NOT** create a template without separate authorization.
+**Template availability (observed 2026-11-10).** Templates exist for the Project Charter, Scope Statement, and Feasibility Study, and for the Project Brief. The Project Brief template is used as a precondition input, not as a Phase 1 deliverable. No template exists for a Stakeholder Analysis, a standalone Budget Estimate, a Project Roadmap, a Risk Register, or an Assumptions Register; the charter and scope templates carry partial sections for budget, milestones, risks, and assumptions. The Documentation Agent **MUST** apply `documentation-standards.md` §3 to those artifacts and **MUST NOT** create a template without separate authorization.
 
 ---
 
@@ -215,6 +223,8 @@ File names are indicative: the authorization names the actual paths, and the pro
 Phase 1 work under this workflow is complete when all of the following hold:
 
 - [ ] Authorization for the Phase 1 work existed and is recorded.
+- [ ] An approved Project Brief exists, with approver and date recorded, whether produced through `WF-001` or as an equivalent approved brief, and no Phase 1 deliverable was drafted before that approval.
+- [ ] The initiation audit and work plan are available as persisted records under `docs/00-project-management/` — from `WF-001` or an equivalent documented statement of available material, gaps, and contradictions where `WF-001` was not run.
 - [ ] Deliverable applicability was decided for all eight Phase 1 deliverables, with reasons for exclusions.
 - [ ] Each applicable deliverable exists, follows the standard's metadata and structure rules, and carries accurate status.
 - [ ] Every cost, date, boundary, and success criterion is classified and sourced.
@@ -280,6 +290,7 @@ None of the open questions listed above blocks the procedural steps of this work
 | [`WF-007` — Independent Validation](./independent-validation.md) | Invoked before deliverables are presented as decision-ready. |
 | [`WF-008` — Approval and Phase Gate](./approval-and-phase-gate.md) | Governs the approval of scope, budget, and priorities, and the Phase 1 gate. |
 | [`WF-009` — Change Control](./change-control.md) | Invoked for any change to an approved Phase 1 decision or baseline. |
+| [`WF-010` — Technology Capability Assessment](./technology-capability-assessment.md) | Invoked when a feasibility or technology question turns on which OpenCode mechanism is appropriate; it recommends, and this workflow neither installs nor configures anything. |
 
 ---
 
@@ -290,3 +301,4 @@ None of the open questions listed above blocks the procedural steps of this work
 | 0.1.0 | 2026-11-10 | Initial creation of the Planning and Scope workflow, under explicit Software Architect authorization for the framework workflow stage. | Establish a repeatable Phase 1 procedure that keeps evidence, recommendations, and human decisions separate. | Documentation Agent | `Draft` — not independently validated and not approved. |
 | 0.1.1 | 2026-11-10 | Corrections after the first independent review: the section-structure note is reworded as a proposed convention for this asset class (VAL-001), and the open-questions block now states that none of its items blocks the procedural steps (VAL-004). | Apply authorized review corrections; no procedural step changed. | Documentation Agent | `Draft` — not re-validated and not approved |
 | 0.1.2 | 2026-11-10 | Updated metadata to reflect independent validation PASS, status `In review`, and pending human approval. | Record the completed independent validation result without approving the workflow. | Documentation Agent | Approved by Human user on 2026-11-10. |
+| 0.2.0 | 2026-11-10 | Consolidated revision under Software Architect authorization: the approved Project Brief is now a mandatory Phase 1 precondition (§6.1, §6.2, §7 step 1, §13); the initiation audit, work plan, and Phase 1 authorization record are required as persisted records rather than "in substance" only (§6.2); `WF-010` is referenced for capability and technology-mechanism questions (§4.1, §7 step 4, §8, §10, §15); the Project Brief template is listed as a precondition input. | Apply the intake-to-planning gate and mandatory persistence requirements (DIAG-002) and align Phase 1 with the capability-assessment workflow. Versioning: MINOR (additive new stages, procedures, and requirements; no previously approved decision, boundary, or baseline is altered or superseded). | Documentation Agent | Approved by Human user on 2026-11-10. |
