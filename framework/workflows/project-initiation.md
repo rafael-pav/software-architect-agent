@@ -6,7 +6,7 @@
 | --- | --- |
 | Workflow ID | `WF-001` |
 | Workflow name | Project Initiation |
-| Version | `0.2.0` |
+| Version | `0.3.0` |
 | Status | `Approved` |
 
 | Field | Value |
@@ -15,18 +15,18 @@
 | Workflow ID | `WF-001` |
 | Purpose | Establish an accurate, evidence-based picture of a project's current state before any lifecycle phase begins: classify the intake state, interview the human user adaptively, inventory the available documentation with its provenance, identify gaps, contradictions, risks, and open questions, produce an approved Project Brief, and produce a work plan for human authorization. |
 | Status | `Approved` |
-| Version | `0.2.0` |
+| Version | `0.3.0` |
 | Last updated | `2026-11-10` |
 | Owner role | Documentation Agent (sole authorized writer of framework assets), under Software Architect coordination. |
 | Authority / approval | Approved by Human user on 2026-11-10. |
-| Validation | v0.1.2: independent validation PASS. v0.2.0: independent validation PASS (findings MEDIUM, LOW, and INFORMATIONAL resolved). |
+| Validation | v0.1.2/v0.2.0: independent validation PASS. v0.3.0: independent validation PASS (findings MEDIUM, LOW, and INFORMATIONAL resolved). |
 | Applies to | The start of a project engagement — from an idea, partial documentation, complete documentation, or a modification to an existing system — and any re-baselining of an engagement whose available project material has changed materially. |
 | Related workflows | `WF-002` (next phase), `WF-005` (research), `WF-006` (documentation production), `WF-008` (approval and phase gate), `WF-009` (change control), `WF-010` (technology capability assessment). |
 | Related documents | [`AGENTS.md`](../../AGENTS.md) §§2–4, 10; [`framework/standards/documentation-standards.md`](../standards/documentation-standards.md) §§2–4, 7, 9; [`project-brief.md`](../templates/project-brief.md); [`project-documentation-audit-and-manifest.md`](../templates/project-documentation-audit-and-manifest.md); [`.opencode/agents/software-architect.md`](../../.opencode/agents/software-architect.md) §4; [`.opencode/agents/documentation-agent.md`](../../.opencode/agents/documentation-agent.md) §§2–3. |
 
 **Identifier scheme.** Workflow identifiers in this asset class use the pattern `WF-NNN`, assigned sequentially and never reused. The scheme is outside the six requirement prefixes of `documentation-standards.md` §5.1, is documented here for the asset class as required by §5.5, and does not conflict with them. Other identifiers cited in this workflow (`BR`, `FR`, `NFR`, `UC`, `INT`, `SEC`, `AC`, `TST`, `ASM`, `OQ`, `RISK`, `DEC`, `ADR`, `VAL`, `OBJ`, `CON`, `SRC`, `DOC`, `GAP`, `CONFLICT`) keep the meanings given by the standard, template, or agent definition that establishes them; this workflow does not redefine them. `DOC`, `GAP`, and `CONFLICT` are the audit-manifest identifiers defined in [`project-documentation-audit-and-manifest.md`](../templates/project-documentation-audit-and-manifest.md) §3, §4, and §5; `OBJ`, `CON`, `SRC`, `ASM`, `OQ`, `RISK`, and `DEC` are defined in the planning templates.
 
-**Normative basis.** This workflow introduces no documentation rule of its own. Where it states a rule, the rule derives from `AGENTS.md`, the agent definitions, or `documentation-standards.md`, and those sources prevail if this file conflicts with them. The conventions introduced in v0.1.2 are in effect as part of an approved workflow: v0.1.2 was approved by the Human user on 2026-11-10 and independently validated (PASS). The intake, questioning, provenance, and Project Brief conventions introduced in v0.2.0 are in effect as part of the approved workflow: v0.2.0 was approved by the Human user on 2026-11-10 and independently validated (PASS). Approval does not change their normative rank — `AGENTS.md`, the agent definitions, and `documentation-standards.md` prevail if this file conflicts with them.
+**Normative basis.** This workflow introduces no documentation rule of its own. Where it states a rule, the rule derives from `AGENTS.md`, the agent definitions, or `documentation-standards.md`, and those sources prevail if this file conflicts with them. The conventions introduced in v0.1.2 are in effect as part of an approved workflow: v0.1.2 was approved by the Human user on 2026-11-10 and independently validated (PASS). The intake, questioning, provenance, and Project Brief conventions introduced in v0.2.0 are in effect as part of the approved workflow: v0.2.0 was approved by the Human user on 2026-11-10 and independently validated (PASS). The methodology/evidence boundary introduced in v0.3.0 is also in effect: v0.3.0 was approved by the Human user on 2026-11-10 and independently validated (PASS). Approval does not change their normative rank — `AGENTS.md`, the agent definitions, and `documentation-standards.md` prevail if this file conflicts with them.
 
 **Section structure.** The sixteen sections of this workflow are a **proposed convention for this asset class** — a `RECOMMENDATION` until a durable workflow-governance document is established. The order deviates from the section order recommended in `documentation-standards.md` §3.3, which is a SHOULD-level recommendation and not a mandatory rule. The deviation is recorded here and justified: a workflow is read as a procedure, so its order follows the execution sequence — identification, inputs, steps, outputs, controls, approval points, completion criteria — rather than a document's reading order. The standard's content requirements are still met in section 10 (references), section 12 (decisions and approval status), section 14 (assumptions, open questions, and risks), and section 16 (change history).
 
@@ -34,7 +34,7 @@
 
 ## 2. Purpose
 
-This workflow defines how a project engagement is opened. It produces a defensible starting position: what documentation and repository material exists, which of it is authoritative, what is missing, what is contradictory, and what the agents propose to do next.
+This workflow defines how a project engagement is opened. It produces a defensible starting position: what project documentation and material exists, which of it is authoritative, what is missing, what is contradictory, and what the agents propose to do next.
 
 The engagement begins with **Discovery and Intake**. The Software Architect classifies the engagement into one of four intake states — `Idea (greenfield)`, `Partial documentation`, `Complete documentation`, or `Existing system modification` — and then interviews the human user conversationally, one question at a time, using the available material to avoid asking what is already answered. The result is consolidated into a **Project Brief** that the human user approves before Planning and Scope (`WF-002`) begins.
 
@@ -64,7 +64,7 @@ Do not use this workflow to re-open an approved decision. Changes to approved co
 
 - Classifying the engagement into an intake state and confirming that classification with the human user (§4.3).
 - Conducting the adaptive intake interview with the human user (§7.1).
-- Reading and inventorying repository structure and project material.
+- Reading and inventorying project material and documentation.
 - Recording the provenance of every original, and detecting duplicates and stale versions by content.
 - Establishing which material is authoritative, provisional, superseded, or unreadable.
 - Identifying missing information, contradictions, risks, and open questions.
@@ -80,6 +80,7 @@ Do not use this workflow to re-open an approved decision. Changes to approved co
 - Resolving contradictions between sources. The workflow records them; the human user or the Software Architect decides.
 - Modifying original project material under `input/existing-documentation/`, in any way and for any stated convenience.
 - Reviewing, refactoring, or documenting application source code. For an `Existing system modification` engagement, only the system's documented behaviour, interfaces, and constraints are in scope.
+- Automatically inspecting application source code or other repository files to infer project information. The Software Architect inspects only the named project sources (§4.4), and for an existing system only with the prior authorization described in §4.3.
 - Choosing, installing, enabling, or configuring OpenCode mechanisms (Skills, Commands, Agents, MCP servers, Plugins). Mechanism choices follow `WF-010`, and any installation requires separate explicit human authorization.
 - Application implementation, code, prototypes, infrastructure, or automation of any kind.
 - Creating new framework assets. Missing templates or workflows observed during initiation are reported, not created.
@@ -96,6 +97,8 @@ Every engagement is classified before it is audited. The intake state determines
 | `Complete documentation` | Material appears to cover the project's planning, requirements, and design scope. | Which documents are authoritative, approved, and current. | Full. Classify every document, analyse versions and duplicates, and review contradictions. |
 | `Existing system modification` | A system already operates and the engagement concerns a change to it. | What the system does today, its documented interfaces, operational constraints, and what must change or remain. | Targeted. Inventory documented behaviour and interface records. **Application source code is out of scope:** only the system's documented behaviour, interfaces, and constraints are captured. |
 
+**Authorization before inspecting an existing system.** For an `Existing system modification` engagement, the Software Architect asks the human user — before any repository or file of the existing system is inspected — whether inspection is authorized and which parts are authorized. The inspection is read-only, and the authorization to inspect **does not** authorize modifying code, configuration, or any other file of the system.
+
 The [`project-brief.md`](../templates/project-brief.md) template restates these four states and their effect for the reader; this section is the authoritative definition and prevails if the two differ.
 
 **Adaptive interview.** The Software Architect interviews the human user conversationally, **one question at a time**. Each question is informed by the answers already given, the documentation already supplied, and the open questions already recorded. A question that is already answered by the material or by a prior answer **MUST NOT** be asked again. Each answer is classified as `CONFIRMED`, `ASSUMPTION`, or `OPEN QUESTION`; an assumption **MUST NOT** be converted into a confirmed fact without evidence or an explicit human confirmation. Where the engagement's state is ambiguous, the Software Architect states the ambiguity and asks the human user to choose.
@@ -104,13 +107,24 @@ The [`project-brief.md`](../templates/project-brief.md) template restates these 
 
 ### 4.4 Delivery channels, provenance, and material locations
 
-Two locations hold different classes of material, and the audit keeps them distinct:
+**Project-material locations.** Three classes of content are kept separate during initiation (the boundary block below defines them); only two of them are locations whose contents the audit inventories — `input/existing-documentation/` (evidence) and `docs/` (generated output, inventoried but never treated as a source). Methodological infrastructure is a rule source, not a material location: it is read for rules only, is never inventoried as project evidence, and is not a source. The two inventoried locations hold different classes of material, and the audit keeps them distinct:
 
 | Location | Class | Treatment |
 | --- | --- | --- |
 | `input/existing-documentation/` | Original project material supplied by the human user. | Accepted delivery location for files. Read-only: never edited, renamed, moved, replaced, or deleted. |
 | `docs/` | Generated project documentation, including this workflow's persisted records. | Written only by the Documentation Agent under an explicit authorization. Never treated as an original. |
 
+**Methodological infrastructure versus project evidence (normative boundary).** Three classes of repository content are kept strictly separate during initiation. Confusing them is a defect in the audit, not a matter of presentation.
+
+| Class | What it is | Treatment |
+| --- | --- | --- |
+| (a) Methodological infrastructure | `AGENTS.md`, `README.md`, `.opencode/`, `framework/`, `opencode.json`, `.gitignore`, and other repository configuration. | Read **for rules only**. **Never project evidence.** It **MUST NOT** appear in the documentation inventory, the manifest, the Project Brief, or any project analysis. |
+| (b) Project sources | The conversation with the human user, `input/existing-documentation/`, and any other source the human user explicitly authorizes. | The **only** admissible evidence about the project. Every recorded statement about the project traces to one of these sources. |
+| (c) Project deliverables | `docs/` — the generated documentation written by the Documentation Agent. | Outputs. Never treated as a source, and never substituted for one. |
+
+- **No inference from the repository.** Project facts **MUST NOT** be inferred from source code, configuration, directory listings, file names, or any repository content that is not an authorized project source. A statement about the project that cannot be traced to class (b) is an `OPEN QUESTION`, not a finding.
+- **Rules, not content.** Methodological infrastructure supplies the rules this workflow follows — permissions, boundaries, document structure, and conventions. Reading it is not an inspection of the project, and nothing it contains is reported as project information.
+- **Authorized sources only.** The Software Architect inspects only the named project sources. Inspecting an existing system's repository or files requires the prior human authorization described in §4.3.
 - **Delivery channels.** Information may arrive as files, pasted text, verbal statements, or references to material that has not been supplied. Each is recorded as an attributable, dated source record (`SRC-NNN`) that names who provided it and through which channel. Information supplied verbally is not less valid than a file, but it is weaker evidence about an existing system's behaviour, and is classified accordingly.
 - **Documents referenced but not provided.** The Software Architect requests them, and the absence is recorded as a gap until they arrive. Their contents must not be described from expectation.
 - **Provenance.** Every original in the manifest records its delivery source, delivery date, and channel. Material without provenance cannot be assessed for authority.
@@ -123,7 +137,7 @@ Two locations hold different classes of material, and the audit keeps them disti
 
 | Role | Responsibility in this workflow |
 | --- | --- |
-| **Software Architect** | Owns the workflow. Classifies the intake state, conducts the adaptive intake interview with the human user one question at a time, inspects the repository, performs or directs the audit analysis, decides priorities, judges blocking status, reviews the Project Brief and the work plan, and presents decisions to the human user. Writes no files. |
+| **Software Architect** | Owns the workflow. Classifies the intake state, conducts the adaptive intake interview with the human user one question at a time, inspects the named project sources, performs or directs the audit analysis, decides priorities, judges blocking status, reviews the Project Brief and the work plan, and presents decisions to the human user. Writes no files. |
 | **Documentation Agent** | Drafts the audit and the Project Brief when authorized, applies the audit and Project Brief templates, records provenance and classification, and reports inventory findings to the Software Architect. Drafts nothing without an explicit file list. |
 | **Research Agent** | Read-only. Investigates externally verifiable questions raised by the audit when assigned. Provides findings and sources; does not decide and does not write. |
 | **Validation Agent** | Read-only. May review the completeness of the audit when the Software Architect assigns that review. Cannot authorize work, approve scope, or complete a phase. |
@@ -149,12 +163,12 @@ No other agents exist in this system. No Planning Agent is defined; the Software
 
 | Input | Source | Requirement | Notes |
 | --- | --- | --- | --- |
-| Repository instructions | `AGENTS.md`, `README.md` | **MUST** | Normative basis for permissions and boundaries. |
+| Repository instructions | `AGENTS.md`, `README.md` | **MUST** | Normative basis for permissions and boundaries. Methodological infrastructure — read for rules only; NOT project evidence; excluded from the inventory, manifest, and Project Brief. |
 | Original project material | `input/existing-documentation/` | **SHOULD** | Read-only. May be absent for a project starting from zero. |
 | Verbal or pasted project information | Human user | **MAY** | Captured as an attributable, dated source record; not left in conversation only. |
 | Documents referenced but not provided | Human user | **SHOULD** be requested | Requested from the human user and recorded as a gap until delivered. |
 | Existing generated documentation | `docs/00-project-management/` … `docs/05-validation/` | **MAY** | May be empty on first engagement. |
-| Framework standards, templates, workflows | `framework/` | **MUST** for the Documentation Agent | Determines structure and reusable conventions. |
+| Framework standards, templates, workflows | `framework/` | **MUST** for the Documentation Agent | Determines structure and reusable conventions. Methodological infrastructure — read for rules only; NOT project evidence; excluded from the inventory, manifest, and Project Brief. |
 | Project objective and constraints as stated by the human user | Software Architect | **MUST** | Must be attributable to the human user, not inferred by an agent. |
 | Prior authorization records | Software Architect | **MAY** | Required on re-baselining. |
 
@@ -180,8 +194,8 @@ The steps are grouped into three stages: Discovery and Intake, Documentation Aud
 
 ### 7.2 Stage B — Documentation Audit
 
-7. **Inventory the repository structure.** The Software Architect, assisted by the Documentation Agent where useful, records the directory structure and the files present, including files that appear empty, duplicated, or in non-Markdown formats, and including the absence of an expected directory.
-8. **Build the documentation manifest with provenance.** Using [`project-documentation-audit-and-manifest.md`](../templates/project-documentation-audit-and-manifest.md), record for each item: path, apparent title and purpose, format, apparent status, version or date if stated, language, stated owner if any, delivery source, delivery date, channel, and readability. A row **MUST NOT** be completed from memory, from a file name, or from expectation. Material whose delivery source, date, or channel cannot be established is recorded as such, and its authority is correspondingly limited.
+7. **Inventory the project documentation.** The Software Architect, assisted by the Documentation Agent where useful, records the project material present: the files under `input/existing-documentation/` and `docs/`, plus any source the human user explicitly authorizes — including files that appear empty, duplicated, or in non-Markdown formats, and including the absence of an expected directory. Methodological infrastructure and repository configuration files (`AGENTS.md`, `README.md`, `.opencode/`, `framework/`, `opencode.json`, `.gitignore`) are read for rules but are **excluded from the inventory**: they are not project evidence (§4.4). No repository file outside the authorized project sources is inspected in order to infer project information.
+8. **Build the documentation manifest with provenance.** Using [`project-documentation-audit-and-manifest.md`](../templates/project-documentation-audit-and-manifest.md), record for each item: path, apparent title and purpose, format, apparent status, version or date if stated, language, stated owner if any, delivery source, delivery date, channel, and readability. A row **MUST NOT** be completed from memory, from a file name, or from expectation. Material whose delivery source, date, or channel cannot be established is recorded as such, and its authority is correspondingly limited. The manifest records project material only; framework and repository configuration files are excluded, because they supply rules rather than evidence about the project (§4.4).
 9. **Analyse versions and duplicates by content.** Compare the supplied material for duplicates, earlier drafts, later revisions, and same-titled but different documents. Comparison is based on content — sections, identifiers, dates, change history, or extracted text — not on file name, timestamp alone, or directory position. Every `superseded` designation records its basis; where the basis is an agent's judgement, the designation remains a `RECOMMENDATION` until the Software Architect or the human user decides. Duplicate and superseded files are neither deleted nor renamed.
 10. **Read the available material and classify what it is.** Distinguish authoritative sources, drafts, superseded material, material of unknown standing, and material that could not be read. Record the basis for each judgement.
 11. **Identify gaps.** For each relevant area (objectives, scope, stakeholders, budget, constraints, dependencies, requirements, integrations, security and privacy, architecture, deployment), record what is expected but missing. Absence is a gap only where a phase deliverable or decision depends on it; state the dependency.
@@ -210,7 +224,7 @@ The steps are grouped into three stages: Discovery and Intake, Documentation Aud
 
 | From | To | Assignment | Constraints |
 | --- | --- | --- | --- |
-| Software Architect | Documentation Agent | Read repository material; report inventory, provenance, gaps, contradictions, and structural observations. | Read-only until a drafting or persistence assignment is issued. Findings go to the Software Architect, not into files. |
+| Software Architect | Documentation Agent | Read project material; report inventory, provenance, gaps, contradictions, and structural observations. | Read-only until a drafting or persistence assignment is issued. Findings go to the Software Architect, not into files. |
 | Software Architect | Documentation Agent | Draft the documentation audit and manifest, and the Project Brief. | Explicit authorization naming each file; the audit template and the Project Brief template are applied; nothing is filled from expectation. |
 | Software Architect | Documentation Agent | Persist the audit and manifest, the approved Project Brief, the work plan, and the authorization record. | Explicit file list; `docs/00-project-management/` only. Persistence itself is mandatory under §7.3 step 20; the authorization only fixes the files. |
 | Software Architect | Research Agent | Verify externally observable facts named in the original material, or investigate feasibility questions raised by the audit. | Read-only; findings and sources only; no decisions; no file writes. |
@@ -256,7 +270,7 @@ Mechanism questions raised during intake — whether a need calls for a Skill, a
 | Documentation Standards | [`framework/standards/documentation-standards.md`](../standards/documentation-standards.md) | Normative rules for classification, identifiers, sources, provenance, and metadata. |
 | Documentation Agent definition | [`.opencode/agents/documentation-agent.md`](../../.opencode/agents/documentation-agent.md) | Write boundaries and required reporting. |
 
-**Template availability (observed 2026-11-10).** Templates now exist for the documentation audit and manifest and for the Project Brief. Both were created as `Draft` v0.1.0 under Software Architect authorization, and neither has been independently validated or approved at the time of writing. Gap, contradiction, version/duplicate, and classification registers are sections of those templates rather than standalone templates; no template exists for a standalone risk register or assumptions register. Creating any further template requires separate Software Architect authorization and is outside this workflow.
+**Template availability (observed 2026-11-10).** Templates now exist for the documentation audit and manifest and for the Project Brief. Both were created as `Draft` v0.1.0 under Software Architect authorization, and both were subsequently independently validated (PASS) and approved by the Human user on 2026-11-10 at v0.1.0. [`project-brief.md`](../templates/project-brief.md) is `Approved` at v0.1.0. [`project-documentation-audit-and-manifest.md`](../templates/project-documentation-audit-and-manifest.md) was `Approved` at v0.1.0; its v0.1.1 boundary-reinforcement change was independently validated (PASS) and approved by the Human user on 2026-11-10, making v0.1.1 the approved baseline of that template. Gap, contradiction, version/duplicate, and classification registers are sections of those templates rather than standalone templates; no template exists for a standalone risk register or assumptions register. Creating any further template requires separate Software Architect authorization and is outside this workflow.
 
 ---
 
@@ -303,7 +317,7 @@ This workflow is complete when all of the following hold:
 - [ ] The initiation boundary is recorded: what was requested and what was not.
 - [ ] The intake state is recorded with its basis, and the human user has confirmed it or the selection is recorded as an `ASSUMPTION`.
 - [ ] The intake interview used one question at a time, and no question already answered by the material was repeated.
-- [ ] Repository structure and the documentation manifest are recorded with paths that were actually read, including delivery source, delivery date, and channel for every original.
+- [ ] The project documentation manifest is recorded with paths that were actually read, including delivery source, delivery date, and channel for every original.
 - [ ] Duplicate and stale material has been analysed by content, and every `superseded` designation records its basis.
 - [ ] Every item that could not be read is recorded as a limitation, and a readable version has been requested where the material is needed.
 - [ ] Gaps are recorded with the deliverable or decision that depends on them, including documents referenced but not delivered.
@@ -404,3 +418,4 @@ None of the open questions listed above blocks the procedural steps of this work
 | 0.1.1 | 2026-11-10 | Corrections after the first independent review: the section-structure note is reworded as a proposed convention for this asset class (VAL-001), and the open-questions block now states that none of its items blocks the procedural steps (VAL-004). | Apply authorized review corrections; no procedural step changed. | Documentation Agent | `Draft` — not re-validated and not approved |
 | 0.1.2 | 2026-11-10 | Updated metadata to reflect independent validation PASS, status `In review`, and pending human approval. | Record the completed independent validation result without approving the workflow. | Documentation Agent | Approved by Human user on 2026-11-10. |
 | 0.2.0 | 2026-11-10 | Consolidated expansion under Software Architect authorization: added the Discovery and Intake stage with four intake states and an adaptive one-question-at-a-time interview; added the Project Brief as a human-approved output preceding `WF-002`; added delivery-channel, provenance, content-based duplicate, and format handling (§4.4, §14.3, §14.7); made persistence of the audit, brief, work plan, and authorization record mandatory under `docs/00-project-management/`; defined the two material locations; updated the output, control, approval, and completion-criteria sections; referenced `project-brief.md`, `project-documentation-audit-and-manifest.md`, and `WF-010`; resolved `OQ-WF-001-01` and `OQ-WF-001-02`. | Address the initiation and intake gaps identified in the framework review (DIAG-001 to DIAG-006) and align the workflow with the new templates and capability-assessment workflow. Versioning: MINOR (additive new stages, procedures, and requirements; no previously approved decision, boundary, or baseline is altered or superseded). | Documentation Agent | Approved by Human user on 2026-11-10. |
+| 0.3.0 | 2026-11-10 | Adds the normative methodology/evidence boundary with three strictly separated classes (§4.4); adds the exclusion of automatic source-code and repository inspection (§4.2); adds the human authorization requirement before an existing system's repository or files are inspected (§4.3); marks the two methodological-infrastructure input rows as rules only (§6.2); re-scopes the audit inventory and the manifest to project material only (§7.2 steps 7–8). | Enforce a strict separation between the rules the agents follow and the evidence a project audit may rely on. Made under explicit Software Architect authorization for the boundary-correction pass. Versioning: MINOR (adds a normative methodology/evidence boundary; no approved decision altered or superseded). | Documentation Agent | Approved by Human user on 2026-11-10. |

@@ -100,14 +100,16 @@ Do not delegate application programming tasks.
 
 When starting work on a project:
 
-1. Inspect the repository structure.
+1. Identify the project information sources: the conversation and input/existing-documentation/. Read AGENTS.md and the agent definitions as methodological rules only.
 2. Read the general instructions in AGENTS.md.
 3. Review the project information available under input/existing-documentation/ .
 4. Inspect input/existing-documentation/ before proposing new documentation.
-5. Identify the documents and information already available.
+5. Identify the project documents and information already available, from the conversation and input/existing-documentation/ only.
 6. Prepare an initial documentation audit.
 7. Identify missing information, contradictions, risks, and open questions.
 8. Propose a work plan for the user to review.
+
+Framework and configuration files (framework/, .opencode/, opencode.json, .gitignore, README.md) are methodological infrastructure, read only for rules, never treated as project information. Project information comes only from the conversation, from input/existing-documentation/, and from other sources the human user explicitly authorizes.
 
 Do not immediately replace or recreate existing documentation.
 

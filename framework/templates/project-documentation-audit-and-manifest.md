@@ -5,7 +5,7 @@
 | Asset type | Reusable framework template. Not a project document and not a filled example. |
 | Purpose | Skeleton for the documentation audit and manifest produced during `WF-001` intake: a path-by-path record of the material supplied, its provenance and readability, the gaps and contradictions identified, version and duplicate analysis performed by content, and the classification summary that the work plan depends on. |
 | Status | Approved |
-| Version | 0.1.0 |
+| Version | 0.1.1 |
 | Last updated | 2026-11-10 |
 | Owner role | Documentation Agent |
 | Authority / approval | Approved by Human user on 2026-11-10. |
@@ -18,6 +18,7 @@
 | Version | Date | Summary | Reason | Author | Status |
 | --- | --- | --- | --- | --- | --- |
 | 0.1.0 | 2026-11-10 | Initial creation of the documentation audit and manifest template, under explicit Software Architect authorization for the consolidated framework-expansion pass. | Give the `WF-001` audit a reusable structure with provenance, gap, contradiction, and duplicate analysis sections. | Documentation Agent | Approved by Human user on 2026-11-10. |
+| 0.1.1 | 2026-11-10 | Reinforces the methodology/evidence boundary: the `framework/` row in §1 now states that framework and configuration files are excluded from the §3 manifest and are not project evidence, and §3 carries a note that only project material is recorded. | Align the template with the normative boundary introduced in `project-initiation.md` v0.3.0. Made under explicit Software Architect authorization. Versioning: PATCH (reinforcement note; no manifest field, register, or intake-state definition changed). | Documentation Agent | Approved by Human user on 2026-11-10. |
 
 ---
 
@@ -63,7 +64,7 @@
 | --- | --- | --- |
 | `input/existing-documentation/` | Original project material supplied by the human user. | Read and referenced. **Read-only:** never edited, renamed, moved, replaced, or deleted. |
 | `docs/` | Generated project documentation, written only by the Documentation Agent under authorization. | Recorded as generated output. Never treated as an original, and never substituted for one. |
-| `framework/` | Reusable framework standards, templates, and workflows. | Reference only, for the conventions this audit follows. |
+| `framework/` | Reusable framework standards, templates, and workflows. | Reference only, for the conventions this audit follows. **Excluded from the §3 manifest:** framework and repository configuration files are rules, not project evidence, and are never recorded as project material. |
 
 **Statement on original material.** This audit does not modify, re-create, or replace any original document. Every statement about an original is traceable to the path in §3. Where an original is incomplete, contradictory, or unreadable, that condition is recorded rather than corrected.
 
@@ -82,6 +83,8 @@
 *Guidance: the four intake states and their effect on questioning and audit depth are defined authoritatively in [`project-initiation.md`](../workflows/project-initiation.md) §4.3, and restated in [`project-brief.md`](./project-brief.md) §1.2 for the reader. Do not define them again here. Record the selected state, the basis, and the depth actually applied. For `Existing system modification`, application source code is out of scope: only documented behaviour, interfaces, and constraints are audited.*
 
 ## 3. Document manifest
+
+*Guidance: only project material is recorded here — the files under `input/existing-documentation/` and `docs/`, plus any source the human user explicitly authorizes. Framework files and repository configuration (`AGENTS.md`, `README.md`, `.opencode/`, `opencode.json`, `.gitignore`), and application source code, are **excluded** from this manifest: they supply rules, not evidence about the project, and no row is completed from a repository file that is not an authorized project source (`project-initiation.md` §4.4).*
 
 ### 3.1 Original and generated documents
 
