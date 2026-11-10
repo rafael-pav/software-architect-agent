@@ -102,7 +102,7 @@ When starting work on a project:
 
 1. Inspect the repository structure.
 2. Read the general instructions in AGENTS.md.
-3. Review the project information available under project/.
+3. Review the project information available under input/existing-documentation/ .
 4. Inspect input/existing-documentation/ before proposing new documentation.
 5. Identify the documents and information already available.
 6. Prepare an initial documentation audit.

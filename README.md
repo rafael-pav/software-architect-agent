@@ -283,6 +283,15 @@ opencode
 
 The default agent is `software-architect`.
 
+### Providing initial project information
+
+To begin a project, describe its objective in the conversation; this alone is sufficient to start. You may also provide documents, but you are not required to prepare technical documents that the agents can analyze themselves.
+
+- **Document location:** `input/existing-documentation/` is the only location for original project documents. They are read-only and are never edited, renamed, moved, replaced, or deleted.
+- **Accepted formats:** Markdown and plain text; PDF and Office documents whose text can be extracted; and images/diagrams (accompany them with a brief text description). If a document cannot be read, the Software Architect will request a readable version.
+- **Original vs. generated:** original documents are analyzed and referenced, never modified; all generated deliverables are written under `docs/`, kept separate from the originals.
+- **Verbal or pasted input:** you may describe the project or paste text in the conversation; the Software Architect captures it as an attributable source and asks clarifying questions one at a time.
+
 The Software Architect coordinates the specialized agents according to their instructions and permissions.
 
 ## 10. Scope and Limitations
