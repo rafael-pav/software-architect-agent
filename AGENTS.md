@@ -247,6 +247,8 @@ Every framework modification requires explicit authorization from the Software A
 
 The Architect must define the purpose and scope of the requested change.
 
+Any modification to an approved framework asset (a standard, template, or workflow) requires two distinct approvals: human approval of the proposed change, and Software Architect authorization identifying the exact files and permitted modification scope. Software Architect authorization does not replace human approval.
+
 The Research Agent and Validation Agent may inspect framework assets but must never modify them.
 
 Framework assets must not silently override repository-wide instructions or agent permissions. If a conflict is identified, report it to the Software Architect for human-controlled resolution.
