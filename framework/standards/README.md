@@ -3,12 +3,12 @@
 | Field | Value |
 | --- | --- |
 | Purpose | Index and governance entry point for the reusable documentation standards of this repository. |
-| Status | Approved |
-| Version | 0.3.1 |
-| Last updated | 2026-11-09 |
+| Status | In review |
+| Version | 0.4.0 |
+| Last updated | 2026-11-10 |
 | Owner role | Documentation Agent (sole authorized writer). |
-| Authority / approval | Approved by Human user on 2026-11-09. The Software Architect coordinates, authorizes, and reviews standards work but does not write files. |
-| Validation | v0.2.0: independent validation PASS (second review, 2026-11-09). v0.3.1: independent validation PASS (re-review, 2026-11-09). |
+| Authority / approval | v0.3.1 approved by Human user on 2026-11-09. The change incorporated in v0.4.0 was approved by the Human user on 2026-11-10, under Software Architect authorization of 2026-11-10 naming `framework/standards/README.md`, `framework/standards/documentation-standards.md`, and `framework/workflows/change-control.md`. v0.4.0 is not approved. The Software Architect coordinates, authorizes, and reviews standards work but does not write files. |
+| Validation | v0.2.0: independent validation PASS (second review, 2026-11-09). v0.3.1: independent validation PASS (re-review, 2026-11-09). v0.4.0: pending independent validation. |
 | Directory | `framework/standards/` |
 | Related documents | [`documentation-standards.md`](./documentation-standards.md) — the standard indexed and governed by this README. |
 
@@ -46,6 +46,7 @@ Reusable standards in this directory may define:
 - Versioning, status, and change control for documents.
 - Minimum quality criteria for a document to be considered complete.
 - Documentation conventions specific to each of the three supported lifecycle phases.
+- The documentation impact review that follows a change to project material, decisions, or documentation (see `documentation-standards.md` §9.6).
 
 ### 2.2 Out of scope
 
@@ -78,7 +79,7 @@ Only standards whose files actually exist in this directory are listed. The inde
 
 | Standard | File | Purpose | Status |
 | --- | --- | --- | --- |
-| Documentation Standards | [`documentation-standards.md`](./documentation-standards.md) | Foundational standard for documentation produced during Planning and Scope, Requirements Analysis, and System Design and Architecture. Defines writing principles, the language policy, structure and metadata conventions, the four information classifications, the six requirement/artifact identifier prefixes, traceability, source and evidence handling, recording of assumptions/questions/risks/decisions, versioning and change control, and minimum completion criteria. | Approved |
+| Documentation Standards | [`documentation-standards.md`](./documentation-standards.md) | Foundational standard for documentation produced during Planning and Scope, Requirements Analysis, and System Design and Architecture. Defines writing principles, the language policy, structure and metadata conventions, the four information classifications, the six requirement/artifact identifier prefixes, traceability, source and evidence handling, recording of assumptions/questions/risks/decisions, versioning and change control, the documentation impact review required after any change (§9.6), and minimum completion criteria. | In review |
 
 No other standards currently exist. Templates (`framework/templates/`) and workflows (`framework/workflows/`) are separate asset classes and are intentionally not listed here.
 
@@ -150,12 +151,14 @@ Standards follow a controlled lifecycle. The stages below describe responsibilit
 
 - When a standard is created, its entry is added to Section 3 of this README. The index **MUST** list only files that exist.
 - When a standard is superseded, its entry is updated to identify the replacement. The original file is retained and marked as superseded; standards **MUST NOT** be deleted to hide prior decisions.
+- The status recorded for a standard in Section 3 **MUST** reflect the status of that standard's current version and **MUST NOT** imply an approval that the version does not hold. When a standard's status changes, this index is updated in the same change.
 
 ### 5.6 Maintenance and change control
 
 - Changes to an existing standard require the same authorization and review discipline as the original creation.
 - Material changes are recorded in the standard's change history with version, date, summary, and reason.
 - This README is subject to the same discipline and maintains its own change history in Section 9.
+- Changes to a standard are subject to the documentation impact review defined in `documentation-standards.md` §9.6: the index in Section 3, the changed standard, and the templates or workflows that cite the affected section are reviewed together, not only the file being edited.
 - Prior conventions and decisions are preserved unless a change is explicitly authorized.
 
 ---
@@ -204,3 +207,4 @@ Research reports persisted under `docs/04-research/` and validation reports pers
 | 0.2.0 | 2026-11-09 | Metadata block harmonized with `documentation-standards.md` §3.2: shared field names aligned, an explicit `Not approved` approval status recorded, and a related-documents field added. This change-history section added in response to review finding VAL-005. | Align this README with its own metadata and change-history requirements, and record corrections made under Software Architect authorization following review findings VAL-001 to VAL-005. | Documentation Agent | Draft — corrections applied; not re-validated and not approved at time of authoring; subsequently passed independent validation (second review, 2026-11-09); not approved. |
 | 0.3.0 | 2026-11-09 | Version bump and state update: the indexed standard now incorporates resolved decisions `OQ-STD-001`, `OQ-STD-002`, and `OQ-STD-003`, the mandatory language policy, and the VAL-006 wording fix. Metadata, the Section 3 index entry, and validation state updated to match. | Keep this index accurate after the standards update applied under Software Architect authorization. | Documentation Agent | In review — changes applied; pending independent validation; not approved. |
 | 0.3.1 | 2026-11-09 | Corrections applied following the independent review of v0.3.0: the indexed standard's §14 column is relabeled to `Status` (VAL-001); the v0.2.0 change-history note is reconciled with the v0.2.0 validation PASS (VAL-002); the language-policy precedence over the general deviation path is clarified (VAL-003); versioning terminology is standardized to "semantic-style version numbering" (VAL-004). The Section 3 status entry is now version-agnostic. | Keep this index consistent with the corrected standard and with the recorded validation state. | Documentation Agent | Approved by Human user on 2026-11-09 (following independent validation PASS). |
+| 0.4.0 | 2026-11-10 | Index state synchronized with the indexed standard: the Section 3 entry records `In review` instead of `Approved`, and its purpose description now names the documentation impact review of §9.6 (VAL-001). §2.1 lists the documentation impact review within the scope of the standards, §5.5 adds the rule that the indexed status must reflect the current version's status, and §5.6 states that changes to a standard are subject to the §9.6 documentation impact review. Metadata status, version, last-updated date, approval status, and validation state updated accordingly. | Correct the index inconsistency reported as VAL-001, so that the index does not represent the indexed standard as approved while its current version is `In review`, and make the new §9.6 review visible in the governance README. | Documentation Agent | In review — additive change applied under Human approval of 2026-11-10 and Software Architect authorization of 2026-11-10; pending independent validation; not approved. |

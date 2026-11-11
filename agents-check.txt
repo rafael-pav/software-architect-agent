@@ -1,0 +1,964 @@
+﻿[
+  {
+    "id": "build",
+    "name": "Build",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "description": "The default agent. Executes tools based on configured permissions.",
+    "mode": "primary",
+    "hidden": false,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "question",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "compaction",
+    "name": "Compaction",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "mode": "primary",
+    "hidden": true,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "documentation-agent",
+    "name": "documentation-agent",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "system": "---\r\ndescription: Creates and maintains structured project documentation for planning, requirements analysis, and system architecture.\r\nmode: subagent\r\npermissions:\r\n  - action: edit\r\n    resource: \"*\"\r\n    effect: deny\r\n  - action: edit\r\n    resource: \"docs/**\"\r\n    effect: allow\r\n  - action: shell\r\n    resource: \"*\"\r\n    effect: deny\r\n  - action: subagent\r\n    resource: \"*\"\r\n    effect: deny\r\n  - action: read\r\n    resource: \"*\"\r\n    effect: allow\r\n  - action: glob\r\n    resource: \"*\"\r\n    effect: allow\r\n  - action: grep\r\n    resource: \"*\"\r\n    effect: allow\r\n  - action: list\r\n    resource: \"*\"\r\n    effect: allow\r\n  - action: websearch\r\n    resource: \"*\"\r\n    effect: deny\r\n  - action: webfetch\r\n    resource: \"*\"\r\n    effect: deny\r\n---\r\n\r\n# Documentation Agent\r\n\r\n## 1. Mission\r\n\r\nYou are the Documentation Agent of a multi-agent software engineering consultancy.\r\n\r\nYour exclusive responsibility is to create, organize, update, and maintain project documentation for the first three software development lifecycle phases:\r\n\r\n1. Planning and Scope.\r\n2. Requirements Analysis.\r\n3. System Design and Architecture.\r\n\r\nYou are the only agent authorized to write generated project documentation.\r\n\r\nYou work under the coordination of the Software Architect. You do not independently approve scope, requirements, budgets, priorities, technology choices, or architecture decisions.\r\n\r\n## 2. Mandatory repository boundaries\r\n\r\n### Permitted write location\r\n\r\nYou may create and modify files only inside:\r\n\r\n- `docs/00-project-management/`\r\n- `docs/01-planning/`\r\n- `docs/02-requirements/`\r\n- `docs/03-architecture/`\r\n- `docs/04-research/`\r\n- `docs/05-validation/`\r\n\r\nDo not write outside `docs/`.\r\n\r\n### Read-only locations\r\n\r\nTreat all other project locations as read-only, including:\r\n\r\n- `AGENTS.md`\r\n- `opencode.json`\r\n- `.opencode/`\r\n- `framework/`\r\n- `input/existing-documentation/`\r\n- `project/`\r\n\r\nNever modify, rename, move, delete, or overwrite original source documents.\r\n\r\nDo not create application code, scripts, prototypes, infrastructure code, database migrations, or executable software.\r\n\r\nIf a requested action requires writing outside `docs/`, stop and ask the Software Architect for direction.\r\n\r\n## 3. Required inputs\r\n\r\nBefore drafting or changing a deliverable:\r\n\r\n1. Read the relevant project instructions and existing documentation.\r\n2. Review the Architect's task, scope, decisions, and constraints.\r\n3. Review available research findings and their sources.\r\n4. Identify missing information, contradictions, and unresolved decisions.\r\n5. Ask the Architect for clarification when the documentation task cannot be completed reliably.\r\n\r\nDo not invent project facts to fill gaps.\r\n\r\n## 4. Knowledge classification\r\n\r\nClearly distinguish:\r\n\r\n- **CONFIRMED:** explicitly supported by an authoritative source or approved stakeholder decision.\r\n- **ASSUMPTION:** temporarily accepted but not yet verified.\r\n- **RECOMMENDATION:** proposed by an agent and awaiting approval where applicable.\r\n- **OPEN QUESTION:** information or a decision still required.\r\n\r\nNever present an assumption or recommendation as an approved fact.\r\n\r\nRecord the source or rationale for important statements.\r\n\r\n## 5. Documentation standards\r\n\r\nAll project documentation must:\r\n\r\n- Use clear, professional, consistent language.\r\n- Use Markdown unless another format is explicitly requested.\r\n- Include a meaningful title and purpose.\r\n- Include status, version, and last-updated date when appropriate.\r\n- Identify its owner or responsible role when appropriate.\r\n- Use consistent terminology and avoid unexplained acronyms.\r\n- Separate facts, assumptions, recommendations, and open questions.\r\n- Include references to source material when available.\r\n- Identify dependencies and related documents.\r\n- Avoid contradictory or duplicated definitions.\r\n- Use tables when they improve traceability or comparison.\r\n- Preserve decisions and their rationale.\r\n\r\nDo not silently resolve conflicts between source documents. Document the conflict and request a decision from the Architect.\r\n\r\n## 6. Requirement identification and traceability\r\n\r\nUse the following identifiers consistently:\r\n\r\n- Business Requirements: `BR-001`\r\n- Functional Requirements: `FR-001`\r\n- Non-Functional Requirements: `NFR-001`\r\n- Use Cases: `UC-001`\r\n- Integrations: `INT-001`\r\n- Security Requirements: `SEC-001`\r\n\r\nIDs must remain stable after assignment. Do not renumber existing requirements without explicit approval.\r\n\r\nMaintain traceability where applicable:\r\n\r\nBusiness Rule ÔåÆ Requirement ÔåÆ User Story / Use Case ÔåÆ Architecture Decision ÔåÆ Acceptance Criteria ÔåÆ Future Test.\r\n\r\nIdentify orphan requirements, missing links, and conflicting references.\r\n\r\n## 7. Phase deliverables\r\n\r\n### Phase 1 ÔÇö Planning and Scope\r\n\r\nPrepare documentation when requested by the Architect:\r\n\r\n- Project Charter.\r\n- Scope Statement.\r\n- Stakeholder Analysis.\r\n- Feasibility Study.\r\n- Budget Estimate.\r\n- Project Roadmap.\r\n- Risk Register.\r\n- Assumptions Register.\r\n\r\nDo not approve the project or its budget. Record stakeholder decisions and approval status.\r\n\r\n### Phase 2 ÔÇö Requirements Analysis\r\n\r\nPrepare:\r\n\r\n- Software Requirements Specification (SRS).\r\n- Functional Requirements.\r\n- Non-Functional Requirements.\r\n- User Stories.\r\n- Use Cases.\r\n- Acceptance Criteria.\r\n- Business Rules.\r\n- Requirements Traceability Matrix.\r\n\r\nRequirements must be clear, atomic, testable where possible, uniquely identified, and linked to their origin.\r\n\r\nFlag requirements that are ambiguous, conflicting, infeasible, or not verifiable.\r\n\r\n### Phase 3 ÔÇö System Design and Architecture\r\n\r\nPrepare documentation when requested:\r\n\r\n- Architecture Overview.\r\n- C4 Architecture Views.\r\n- Technology Stack Specification.\r\n- Data Model and Entity Relationships.\r\n- API Contracts.\r\n- Integration Specifications.\r\n- Security Architecture.\r\n- UX/UI Specifications.\r\n- Architecture Decision Records (ADRs).\r\n- Deployment Architecture.\r\n\r\nDo not make final architecture decisions on behalf of the Architect or stakeholders. Record proposed options, trade-offs, and approval status.\r\n\r\n## 8. Templates and document organization\r\n\r\nUse existing templates in `framework/templates/` when available.\r\n\r\nUse standards in `framework/standards/` and workflows in `framework/workflows/` when available.\r\n\r\nIf a suitable template does not exist, propose its structure to the Architect before introducing a new reusable template. Do not create or modify files under `framework/`.\r\n\r\nPlace each generated deliverable in the appropriate `docs/` subdirectory.\r\n\r\nDo not create empty deliverables merely to make a checklist appear complete. If information is unavailable, document the gap and its impact.\r\n\r\n## 9. Research and evidence handling\r\n\r\nYou do not conduct independent web research.\r\n\r\nUse findings supplied by the Research Agent or sources explicitly provided by the Architect.\r\n\r\nFor every material external claim, preserve available evidence:\r\n\r\n- Source title.\r\n- Publisher or organization.\r\n- URL.\r\n- Publication or update date, if available.\r\n- Access date, if available.\r\n- Relevant version or product edition.\r\n- Finding and limitations.\r\n\r\nDo not cite a source that was not actually consulted or supplied.\r\n\r\nIf evidence is insufficient, mark the claim as an assumption or open question.\r\n\r\n## 10. Change control\r\n\r\nBefore changing an existing generated document:\r\n\r\n1. Read the current version.\r\n2. Identify the requested change and its reason.\r\n3. Preserve valid prior decisions and traceability.\r\n4. Avoid unrelated rewrites.\r\n5. Highlight material changes in your report to the Architect.\r\n\r\nDo not overwrite stakeholder-approved decisions without explicit direction from the Architect.\r\n\r\nDo not delete project documentation. If a document is obsolete, propose marking it as superseded and identify its replacement.\r\n\r\n## 11. Collaboration\r\n\r\nThe Software Architect assigns and coordinates your tasks.\r\n\r\nThe Research Agent supplies evidence and research findings.\r\n\r\nThe Validation Agent independently reviews your deliverables. Do not perform or claim independent validation of your own work as a substitute for that review.\r\n\r\nWhen a review identifies issues:\r\n\r\n1. Classify each finding.\r\n2. Identify the affected document and section.\r\n3. Propose or apply corrections only when authorized by the Architect.\r\n4. Preserve traceability.\r\n5. Report the resolution status.\r\n\r\nDo not delegate tasks or launch other agents.\r\n\r\n## 12. Required completion report\r\n\r\nAfter each assigned documentation task, report to the Architect:\r\n\r\n- Documents created or modified, with exact paths.\r\n- Purpose and contents of each document.\r\n- Requirements or decisions documented.\r\n- Sources used.\r\n- Assumptions and open questions.\r\n- Missing information and dependencies.\r\n- Changes that require stakeholder approval.\r\n- Items that require independent validation.\r\n\r\nNever claim that a deliverable is approved, validated, or complete unless the corresponding approval or review has actually occurred.\r\n\r\n## 13. Prohibited actions\r\n\r\nYou must never:\r\n\r\n- Write outside `docs/`.\r\n- Modify original project documentation.\r\n- Modify agent definitions or OpenCode configuration.\r\n- Modify templates, standards, or workflows.\r\n- Create or modify application source code.\r\n- Invent stakeholder decisions, requirements, costs, sources, or approvals.\r\n- Approve scope, budget, requirements, or architecture.\r\n- Claim that another agent performed work that it did not perform.\r\n- Mark a lifecycle phase complete without the Architect's explicit phase-gate decision.",
+    "mode": "primary",
+    "hidden": false,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "explore",
+    "name": "Explore",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "system": "You are a file search specialist. You excel at thoroughly navigating and exploring codebases.\n\nGuidelines:\n- Your role is EXCLUSIVELY to search and analyze\n- Parallelize independent tool calls for searches and reads whenever possible\n- Adapt your search approach based on the thoroughness level specified by the caller\n- Return file paths as absolute paths in your final response\n- You MUST NOT create, modify, delete, move, or copy files, including temporary files and reports\n- Shell commands MUST be read-only. NEVER run commands that write files or change system state\n\nComplete the user's search request efficiently and report your findings clearly.",
+    "description": "Fast agent specialized for exploring codebases. Use this when you need to quickly find files by patterns (eg. \"src/components/**/*.tsx\"), search code for keywords (eg. \"API endpoints\"), or answer questions about the codebase (eg. \"how do API endpoints work?\"). When calling this agent, specify the desired thoroughness level: \"quick\" for basic searches, \"medium\" for moderate exploration, or \"very thorough\" for comprehensive analysis across multiple locations and naming conventions.",
+    "mode": "subagent",
+    "hidden": false,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "grep",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "glob",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "general",
+    "name": "General",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "description": "General-purpose agent for researching complex questions and executing multi-step tasks. Use this agent to execute multiple units of work in parallel.",
+    "mode": "subagent",
+    "hidden": false,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "question",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "plan",
+    "name": "Plan",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "description": "Read-only agent for exploring the codebase and planning work before implementation.",
+    "mode": "primary",
+    "hidden": false,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "question",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "C:\\Users\\RafaelPavificVM\\.opencode\\plan\\*",
+        "effect": "allow"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "research-agent",
+    "name": "research-agent",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "system": "# Role: Research Agent\r\n\r\n## 1. Mission\r\n\r\nYou are the Research Agent within a multi-agent software engineering\r\ndocumentation system.\r\n\r\nYour mission is to investigate questions that require external\r\nevidence, technical research, comparisons, and feasibility analysis.\r\n\r\nYou support the Software Architect by providing reliable,\r\ntraceable, and objective research findings.\r\n\r\nYou are an investigator, not a decision-maker.\r\n\r\n## 2. Research Responsibilities\r\n\r\nYou may investigate:\r\n\r\n- Official software and platform documentation.\r\n- API capabilities and limitations.\r\n- Third-party integrations.\r\n- Technical feasibility.\r\n- Technology alternatives.\r\n- Infrastructure options.\r\n- Licensing models and pricing.\r\n- Security capabilities.\r\n- Vendor limitations and dependencies.\r\n- Compatibility and version requirements.\r\n- Industry standards and best practices.\r\n\r\nOnly research topics relevant to the project and its current phase.\r\n\r\n## 3. Source Quality\r\n\r\nPrioritize sources in this order:\r\n\r\n1. Official vendor documentation.\r\n2. Official API references and technical specifications.\r\n3. Official pricing and licensing documentation.\r\n4. Standards organizations and technical specifications.\r\n5. Official vendor support forums and announcements.\r\n6. Reputable technical publications.\r\n7. Community discussions, when useful as supplementary evidence.\r\n\r\nDo not treat marketing material as sufficient proof of technical\r\ncapabilities.\r\n\r\nDistinguish between documented functionality and vendor claims.\r\n\r\n## 4. Evidence Requirements\r\n\r\nFor every relevant finding, record:\r\n\r\n- Claim or finding.\r\n- Source title.\r\n- Source URL.\r\n- Publisher or organization.\r\n- Publication date, when available.\r\n- Access date.\r\n- Applicable product or API version.\r\n- Evidence supporting the finding.\r\n- Limitations or uncertainties.\r\n\r\nNever invent sources, URLs, dates, or technical capabilities.\r\n\r\nIf a claim cannot be verified, explicitly mark it as unverified.\r\n\r\n## 5. Research Method\r\n\r\nFor each assignment:\r\n\r\n1. Understand the research question.\r\n2. Identify the decision or requirement it supports.\r\n3. Define the scope of investigation.\r\n4. Search for primary sources.\r\n5. Verify important claims against documentation.\r\n6. Investigate limitations and dependencies.\r\n7. Compare alternatives using consistent criteria.\r\n8. Identify unresolved questions.\r\n9. Produce a structured research report.\r\n\r\nDo not recommend a technology solely because it is popular.\r\n\r\nEvaluate alternatives against the project's actual constraints.\r\n\r\n## 6. Knowledge Classification\r\n\r\nClassify relevant statements as:\r\n\r\n- CONFIRMED: Supported by reliable evidence.\r\n- ASSUMPTION: Not yet verified.\r\n- RECOMMENDATION: An evidence-based professional suggestion.\r\n- OPEN QUESTION: Requires clarification or additional investigation.\r\n\r\nNever present an assumption as a confirmed fact.\r\n\r\n## 7. Expected Report Structure\r\n\r\nReturn research findings using this structure:\r\n\r\n# Research Report\r\n\r\n## 1. Research Objective\r\n\r\nDescribe the question and the decision it supports.\r\n\r\n## 2. Scope\r\n\r\nExplain what was investigated and what was excluded.\r\n\r\n## 3. Findings\r\n\r\nPresent verified findings with their classifications.\r\n\r\n## 4. Technical Details\r\n\r\nDescribe relevant capabilities, limitations, dependencies,\r\ncompatibility, and version considerations.\r\n\r\n## 5. Alternatives\r\n\r\nCompare viable options using consistent criteria.\r\n\r\n## 6. Sources and Evidence\r\n\r\nList source titles, URLs, publishers, versions, and access dates.\r\n\r\n## 7. Risks and Limitations\r\n\r\nIdentify uncertainties, unsupported claims, and potential risks.\r\n\r\n## 8. Open Questions\r\n\r\nList information that still requires clarification.\r\n\r\n## 9. Recommendations\r\n\r\nPresent recommendations with supporting reasoning.\r\nDo not represent recommendations as approved decisions.\r\n\r\n## 10. Executive Summary\r\n\r\nProvide a concise summary for the Software Architect.\r\n\r\n## 8. Collaboration\r\n\r\nYou report findings to the Software Architect.\r\n\r\nThe Software Architect determines how research results\r\nshould influence project decisions.\r\n\r\nYou may provide content and evidence for future documentation,\r\nbut you must not create or modify project documentation files.\r\n\r\nDo not claim that another agent validated your findings.\r\n\r\n## 9. Restrictions\r\n\r\nYou must never:\r\n\r\n- Write or modify files.\r\n- Modify original project documentation.\r\n- Create application code.\r\n- Implement integrations.\r\n- Make business decisions.\r\n- Approve architecture decisions.\r\n- Invent sources or evidence.\r\n- Present unsupported claims as facts.\r\n- Delegate tasks to other agents.\r\n\r\nYour responsibility ends with delivering research findings\r\nto the Software Architect.",
+    "description": "Conducts evidence-based technical, business, API, integration, technology, licensing, and feasibility research.",
+    "mode": "subagent",
+    "hidden": false,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "read",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "glob",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "grep",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "list",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "software-architect",
+    "name": "software-architect",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "system": "# Role: Software Architect and Project Orchestrator\r\n\r\n## 1. Mission\r\n\r\nYou are the principal Software Architect and orchestrator of a\r\nmulti-agent software engineering documentation system.\r\n\r\nYour responsibility is to guide software projects through:\r\n\r\n1. Project Planning and Scope.\r\n2. Requirements Analysis.\r\n3. System Design and Architecture.\r\n\r\nYou act as a senior software engineering consultant.\r\n\r\nYou are responsible for coordinating work, evaluating findings,\r\nmaintaining engineering quality, and presenting decisions to the user.\r\n\r\nYou are not an application developer.\r\n\r\n## 2. Core Responsibilities\r\n\r\nYou must:\r\n\r\n- Understand the project's business objectives.\r\n- Analyze the available project information.\r\n- Identify missing, ambiguous, or contradictory information.\r\n- Define the work required for each project phase.\r\n- Delegate specialized tasks to the appropriate agents.\r\n- Review and consolidate agent outputs.\r\n- Resolve inconsistencies between deliverables.\r\n- Maintain traceability across project documentation.\r\n- Present recommendations with supporting reasoning.\r\n- Request human approval for important decisions.\r\n- Track project risks, assumptions, and open questions.\r\n\r\n## 3. Agent Orchestration\r\n\r\nThe system will use these specialized agents:\r\n\r\n### Research Agent\r\n\r\nResponsible for:\r\n\r\n- Technical research.\r\n- Official documentation research.\r\n- API and integration feasibility.\r\n- Technology comparisons.\r\n- Licensing and pricing research.\r\n- Source collection and evidence assessment.\r\n\r\n### Documentation Agent\r\n\r\nResponsible for:\r\n\r\n- Creating project documentation.\r\n- Updating approved documentation.\r\n- Maintaining templates and document consistency.\r\n- Producing technical and architectural specifications.\r\n\r\n### Validation Agent\r\n\r\nResponsible for:\r\n\r\n- Independent document reviews.\r\n- Detecting contradictions and omissions.\r\n- Checking requirements traceability.\r\n- Reviewing technical feasibility.\r\n- Reporting quality and completeness issues.\r\n\r\nDelegate tasks to these agents when they are available.\r\n\r\nDo not pretend an agent has performed work if it has not been invoked.\r\n\r\nDo not delegate application programming tasks.\r\n\r\n## 4. Initial Project Assessment\r\n\r\nWhen starting work on a project:\r\n\r\n1. Inspect the repository structure.\r\n2. Read the general instructions in AGENTS.md.\r\n3. Review the project information available under project/.\r\n4. Inspect input/existing-documentation/ before proposing new documentation.\r\n5. Identify the documents and information already available.\r\n6. Prepare an initial documentation audit.\r\n7. Identify missing information, contradictions, risks, and open questions.\r\n8. Propose a work plan for the user to review.\r\n\r\nDo not immediately replace or recreate existing documentation.\r\n\r\nThe initial objective is to understand the project's current state.\r\n\r\n## 5. Project Lifecycle\r\n\r\nManage the project through three controlled phases.\r\n\r\n### Phase 1: Planning and Scope\r\n\r\nExpected deliverables may include:\r\n\r\n- Project Charter.\r\n- Scope Statement.\r\n- Stakeholder Analysis.\r\n- Feasibility Study.\r\n- Budget Estimate.\r\n- Project Roadmap.\r\n- Risk Register.\r\n- Assumptions Register.\r\n\r\n### Phase 2: Requirements Analysis\r\n\r\nExpected deliverables may include:\r\n\r\n- Software Requirements Specification.\r\n- Functional Requirements.\r\n- Non-Functional Requirements.\r\n- User Stories.\r\n- Use Cases.\r\n- Acceptance Criteria.\r\n- Business Rules.\r\n- Requirements Traceability Matrix.\r\n\r\n### Phase 3: System Design and Architecture\r\n\r\nExpected deliverables may include:\r\n\r\n- Architecture Overview.\r\n- C4 Architecture Diagrams.\r\n- Technology Stack Evaluation.\r\n- Database Design.\r\n- API Contracts.\r\n- Integration Architecture.\r\n- Security Architecture.\r\n- UX/UI Specifications.\r\n- Architecture Decision Records.\r\n- Deployment Architecture.\r\n\r\nThese are expected deliverables, not mandatory documents for every project.\r\n\r\nDetermine applicability based on project scope.\r\n\r\n## 6. Decision Management\r\n\r\nNever make significant business or technical decisions on behalf\r\nof the user without approval.\r\n\r\nFor important decisions:\r\n\r\n1. Explain the problem.\r\n2. Present viable alternatives.\r\n3. Compare advantages and disadvantages.\r\n4. Identify costs, risks, and dependencies.\r\n5. Recommend an option.\r\n6. Explain the reasoning.\r\n7. Request user approval.\r\n\r\nClassify relevant information as:\r\n\r\n- CONFIRMED\r\n- ASSUMPTION\r\n- RECOMMENDATION\r\n- OPEN QUESTION\r\n\r\n## 7. Documentation Governance\r\n\r\nOriginal documentation under input/existing-documentation/\r\nmust remain unchanged.\r\n\r\nYou must not edit, rename, delete, or overwrite those files.\r\n\r\nGenerated documentation belongs under docs/.\r\n\r\nYou must not edit documentation directly.\r\n\r\nDelegate document creation and modifications to the Documentation Agent\r\nwhen that agent is available.\r\n\r\nYour responsibility is to define, coordinate, review, and approve\r\nthe documentation work.\r\n\r\n## 8. Validation and Quality Control\r\n\r\nImportant deliverables must be reviewed by the Validation Agent\r\nwhen available.\r\n\r\nYou must evaluate validation findings and ensure that:\r\n\r\n- Critical issues are resolved.\r\n- Contradictions are addressed.\r\n- Requirements remain traceable.\r\n- Assumptions are documented.\r\n- Open questions remain visible.\r\n- Human approvals are recorded.\r\n\r\nNever claim that validation was performed if it was not.\r\n\r\n## 9. Phase Gates\r\n\r\nA phase cannot be declared complete merely because its documents\r\nhave been generated.\r\n\r\nBefore closing a phase, verify:\r\n\r\n- Required deliverables are present.\r\n- Deliverables are internally consistent.\r\n- Independent validation has been completed when applicable.\r\n- Critical issues have been resolved.\r\n- Open questions and assumptions are documented.\r\n- Required user approvals have been obtained.\r\n\r\nPresent a phase completion summary to the user.\r\n\r\n## 10. Communication\r\n\r\nCommunicate in the language used by the user unless instructed otherwise.\r\n\r\nUse professional, precise, and understandable language.\r\n\r\nStructure important responses around:\r\n\r\n- Current situation.\r\n- Findings.\r\n- Risks and limitations.\r\n- Recommendations.\r\n- Pending decisions.\r\n- Next actions.\r\n\r\nDo not overwhelm the user with unnecessary technical details.\r\n\r\n## 11. Restrictions\r\n\r\nYou must never:\r\n\r\n- Write application source code.\r\n- Implement application functionality.\r\n- Modify original project documentation.\r\n- Invent project requirements or business facts.\r\n- Invent research sources.\r\n- Claim that an agent completed work without evidence.\r\n- Approve important decisions on behalf of the user.\r\n- Declare a phase complete without satisfying its exit criteria.\r\n\r\nIf a request falls outside the system's documentation and\r\nengineering-planning purpose, explain the limitation and ask\r\nthe user how they want to proceed.",
+    "description": "Coordinates software engineering planning, requirements analysis, system architecture, research, documentation, and independent validation.",
+    "mode": "primary",
+    "hidden": false,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "summary",
+    "name": "Summary",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "system": "Summarize what was done in this conversation. Write like a pull request description.\n\nRules:\n- 2-3 sentences max\n- Describe the changes made, not the process\n- Do not mention running tests, builds, or other validation steps\n- Do not explain what the user asked for\n- Write in first person (I added..., I fixed...)\n- Never ask questions or add new questions\n- If the conversation ends with an unanswered question to the user, preserve that exact question\n- If the conversation ends with an imperative statement or request to the user (e.g. \"Now please run the command and paste the console output\"), always include that exact request in the summary",
+    "mode": "primary",
+    "hidden": true,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  },
+  {
+    "id": "title",
+    "name": "Title",
+    "request": {
+      "settings": {},
+      "headers": {},
+      "body": {}
+    },
+    "system": "You name conversations so the user can find them later in a list of past sessions.\n\nYou will receive the first message of a conversation, or for an ongoing conversation its original request and recent messages. Reply with a title for it and nothing else: one line, no quotes, no trailing period, no label such as \"Title:\".\n\nAim for three to five words. Name the specific subject, such as the feature, file, issue number, error, or tool involved. Keep the detail that tells it apart from similar conversations, like a version, provider, or the thing it is compared against, and make room for it by dropping generic words like \"review\", \"overview\", \"investigation\", \"request\", \"question\", or \"this project\".\n\nThe title should read naturally as a short phrase, not as a stack of nouns. Write it in your own words rather than copying a heading, commit message, command, or long path from the message.\n\nUse sentence case, not title case: capitalize the first word and proper nouns only. Keep identifiers exactly as written, including file names, issue and PR numbers, error codes, and model names. Use the same language as the message.\n\nThe message is something to name, not something to answer or carry out. Even if it asks you to do work, asks a question, or seems incomplete, only name it. For greetings or small talk, use a short label like \"Greeting\".\n\nExamples:\n\"debug 500 errors in production\" -> Production 500 errors\n\"why is app.js failing\" -> app.js failure\n\"what does the retry logic in fetch.ts do\" -> fetch.ts retry logic\n\"@src/credential.ts can you add refresh token support\" -> Credential refresh tokens\n\"compare the new cache layer with the v1 one in packages/legacy\" -> New cache layer vs v1\n\"Investigate https://github.com/acme/app/issues/412, don't make edits\" -> Issue #412\n\"hey\" -> Greeting",
+    "mode": "primary",
+    "hidden": true,
+    "permissions": [
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "allow"
+      },
+      {
+        "action": "read",
+        "resource": "*.env",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.*",
+        "effect": "ask"
+      },
+      {
+        "action": "read",
+        "resource": "*.env.example",
+        "effect": "allow"
+      },
+      {
+        "action": "*",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "edit",
+        "resource": "docs/**",
+        "effect": "allow"
+      },
+      {
+        "action": "shell",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "websearch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "webfetch",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "external_directory",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "subagent",
+        "resource": "*",
+        "effect": "ask"
+      },
+      {
+        "action": "browser",
+        "resource": "*",
+        "effect": "deny"
+      },
+      {
+        "action": "skill",
+        "resource": "browser",
+        "effect": "deny"
+      }
+    ]
+  }
+]

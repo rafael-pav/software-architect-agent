@@ -22,3 +22,12 @@ desktop.ini
 # IDE
 .vscode/
 .idea/
+
+# Private company documentation - do not track generated files
+docs/**
+
+# Preserve directory structure
+!docs/**/
+
+# Preserve directory placeholders
+!docs/**/.gitkeep

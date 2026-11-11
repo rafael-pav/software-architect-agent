@@ -3,12 +3,12 @@
 | Field | Value |
 | --- | --- |
 | Purpose | Foundational reusable standard for documentation produced during Project Planning and Scope, Requirements Analysis, and System Design and Architecture. |
-| Status | Approved |
-| Version | 0.3.1 |
-| Last updated | 2026-11-09 |
+| Status | In review |
+| Version | 0.4.1 |
+| Last updated | 2026-11-10 |
 | Owner role | Documentation Agent (sole authorized writer). |
-| Authority / approval | Approved by Human user on 2026-11-09. Drafting authorized by the Software Architect. |
-| Validation | v0.2.0: independent validation PASS (second review, 2026-11-09). v0.3.1: independent validation PASS (re-review, 2026-11-09). |
+| Authority / approval | v0.3.1 approved by Human user on 2026-11-09. The changes incorporated in v0.4.0 and v0.4.1 were approved by Human user on 2026-11-10, under Software Architect authorization of 2026-11-10 naming `framework/standards/documentation-standards.md`, `framework/standards/README.md`, and `framework/workflows/change-control.md`. v0.4.1 is not approved. |
+| Validation | v0.2.0: independent validation PASS (second review, 2026-11-09). v0.3.1: independent validation PASS (re-review, 2026-11-09). v0.4.0: validation was pending when v0.4.1 was prepared; no validation result exists for v0.4.0. v0.4.1: pending independent validation. |
 | Applies to | All generated project documentation under `docs/`, including persisted research and validation reports; all reusable templates and workflows that describe documentation structure; and the framework standards themselves (see Section 1.2). |
 | Not applicable to | Application implementation, programming, source code, executable components, and repository configuration. |
 | Related documents | [`README.md`](./README.md) — standards index and governance. |
@@ -458,6 +458,25 @@ This mandatory requirement reflects resolved decision `OQ-STD-002` (Section 14).
 - Original material under `input/existing-documentation/` **MUST** remain unchanged. It **MUST NOT** be edited, renamed, deleted, or replaced.
 - Repository configuration, instructions, and agent definitions (`README.md`, `AGENTS.md`, `opencode.json`, `.opencode/`, `.gitignore`) **MUST NOT** be modified during documentation work. Conflicts or required changes are reported to the Software Architect for human-controlled maintenance.
 
+### 9.6 Documentation impact review
+
+Whenever a significant change occurs to the project's sources, requirements, decisions, scope, architecture, or documentation, every agent that produces, researches, reviews, or updates documentation **MUST** perform a documentation impact review. The review:
+
+1. Identifies the documents that mention the changed file, requirement, decision, or element.
+2. Locates statements that have become obsolete, contradictions, and references to information that is now available.
+3. Updates the affected sections or explicitly states what remains pending.
+4. Verifies coherence between related documents.
+5. Checks that references to sources, versions, statuses, and decisions reflect the current state.
+6. Records the relevant changes in the project's decision log.
+
+The term *significant* in this section means a change material enough to affect the project's documentation. It is **not** the `Significant change` class defined in [`framework/workflows/change-control.md`](../workflows/change-control.md) §11.2, and the review is **not** limited to changes of that class: it applies generally to every change that is processed, including documentary corrections, while those change classes govern only the approval level a change requires.
+
+It **MUST NOT** be assumed that adding or modifying a file affects only the document being worked on; the review considers the project's documentation as a whole.
+
+This rule applies to all agents that produce, research, review, or update documentation, not only the Documentation Agent.
+
+The review operates together with the change-control discipline of Section 9.3 and the accuracy-of-state requirement of Section 9.4: it is a precondition for describing a change as complete, and its outcome **MUST** be recorded rather than implied. Agents that do not hold write authority over the affected documents — as determined by the repository instructions and their own agent definitions — **MUST** report the outcome of the review, including anything that remains pending, to the Software Architect instead of editing the documents themselves. The procedural application of this rule is defined in [`framework/workflows/change-control.md`](../workflows/change-control.md) (WF-009).
+
 ---
 
 ## 10. Minimum quality criteria for a complete document
@@ -551,6 +570,8 @@ No external sources were consulted in preparing this standard. Statements about 
 | 0.2.0 | 2026-11-09 | Corrections applied under Software Architect authorization following independent review findings VAL-001 to VAL-005: the `INT` meaning is marked provisional (VAL-001); metadata field names are harmonized and the title rule clarified (VAL-002); the `CONFIRMED` definition is aligned with `AGENTS.md` §4 (VAL-003); scope now states self-application to the framework standards (VAL-004). No finding is claimed as resolved until the corrections are reviewed. | Resolve the LOW- and INFORMATIONAL-severity review findings without changing repository instructions or agent definitions. | Documentation Agent | Draft — corrections applied; not re-validated and not approved at time of authoring; subsequently passed independent validation (second review, 2026-11-09); not approved. |
 | 0.3.0 | 2026-11-09 | `INT` resolved to "Integration Requirement" (`OQ-STD-001`); status vocabulary made mandatory (`OQ-STD-002`); semantic-style version numbering made mandatory (`OQ-STD-003`); language policy added (§3.7); VAL-006 wording simplified (§5.1). | Apply human decisions on the framework-level open questions, adopt the language policy, and simplify the dense §5.1 lead-in. | Documentation Agent | In review — changes applied; pending independent validation; not approved. |
 | 0.3.1 | 2026-11-09 | Corrections applied following the independent review of v0.3.0: §14 column relabeled from `Classification` to `Status` with values `Resolved` (VAL-001); the v0.2.0 change-history note reconciled with the v0.2.0 validation PASS (VAL-002); the precedence of the §3.7 language policy over the §1.4 deviation path clarified (VAL-003); versioning terminology standardized to "semantic-style version numbering" (VAL-004). | Address editorial and consistency findings from the v0.3.0 independent review without changing the standard's meaning. | Documentation Agent | Approved by Human user on 2026-11-09 (following independent validation PASS). |
+| 0.4.0 | 2026-11-10 | Adds §9.6 *Documentation impact review*: a significant change to sources, requirements, decisions, scope, architecture, or documentation requires every agent that produces, researches, reviews, or updates documentation to review the project's documentation as a whole for affected mentions, obsolete statements, contradictions, newly available information, stale references, and decision-log updates. No existing section was renumbered, rewritten, or removed. | Incorporate a permanent framework rule approved by the Human user on 2026-11-10, under Software Architect authorization, so that a change is not treated as affecting only the document being edited. | Documentation Agent | In review — additive change applied; pending independent validation; not approved. |
+| 0.4.1 | 2026-11-10 | §9.6 terminology clarified (VAL-002): a sentence states that *significant* in that section means a change material enough to affect the documentation, that it is not the `Significant change` class defined in `framework/workflows/change-control.md` §11.2, and that the review applies generally to every processed change, including documentary corrections, while the change classes govern only the approval level. The six review points and the section's position are unchanged; no other section was modified. | Remove the ambiguity between the §9.6 trigger and the three-class scheme of the change-control workflow, without altering the rule's content. | Documentation Agent | In review — clarification applied under Human approval of 2026-11-10 and Software Architect authorization of 2026-11-10; pending independent validation; not approved. |
 
 ---
 
@@ -564,5 +585,5 @@ The items below were recorded as framework-level open questions in earlier versi
 | `OQ-STD-002` | `Resolved` | The document-status vocabulary (`Draft`, `In review`, `Approved`, `Superseded`, `Withdrawn`) is **mandatory**. | Human user | 2026-11-09 | Section 9.2 |
 | `OQ-STD-003` | `Resolved` | Semantic-style version numbering `MAJOR.MINOR.PATCH` is **mandatory**. | Human user | 2026-11-09 | Section 9.1 |
 
-These decisions are resolved and are retained here for traceability, not as open items. Resolving these decisions is distinct from approving the standard; the standard was approved by the Human user on 2026-11-09, and that approval is recorded in the document metadata.
+These decisions are resolved and are retained here for traceability, not as open items. Resolving these decisions is distinct from approving the standard; version 0.3.1 was approved by the Human user on 2026-11-09, and the status of the current version is recorded in the document metadata.
 
